@@ -1,0 +1,9 @@
+.favourites_wrapper {
+  margin-top: 4em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  box-sizing: border-box;
+  margin-top: 2em;
+}
