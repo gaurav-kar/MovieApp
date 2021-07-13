@@ -1,7 +1,7 @@
 const express = require("express");
 
 const mongoose = require("mongoose");
-require("dotenv").config();
+
 const app = express();
 
 app.use(express.json());
@@ -27,10 +27,12 @@ app.use("/api/user/register", signupRoute);
 app.use("/api/user/login", loginRoute);
 app.use("/api/user/favourites", favourites);
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
-  console.log("DB connection successfull")
+mongoose.connect(
+  process.env.DB_URL,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => console.log("DB connection successfull")
 );
 
-app.listen(5000, () => {
-  console.log("Server listening on port 5000");
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}`);
 });

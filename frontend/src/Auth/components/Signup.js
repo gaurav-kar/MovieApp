@@ -18,7 +18,7 @@ const Signup = () => {
   const onLoginHandler = async (event) => {
     event.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/user/register", {
+    const response = await fetch("/api/user/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,32 +46,34 @@ const Signup = () => {
   };
   return (
     <>
-      <div className='display_banner'>
-        {signUpSucess && <p className='green'>User registration successfully</p>}
-        {signUpFailure && <p className='red'>{signUpFailureMsg}</p>}
+      <div className="display_banner">
+        {signUpSucess && (
+          <p className="green">User registration successfully</p>
+        )}
+        {signUpFailure && <p className="red">{signUpFailureMsg}</p>}
       </div>
-      <div className='form-wrapper'>
-        <div className='form form-signup'>
+      <div className="form-wrapper">
+        <div className="form form-signup">
           <h2>Create your Account</h2>
-          <form action='' onSubmit={onLoginHandler}>
-            <div className='form_username form_input'>
-              <label htmlFor='fname'>First Name</label>
-              <input type='text' ref={firstName} id='fname' />
+          <form action="" onSubmit={onLoginHandler}>
+            <div className="form_username form_input">
+              <label htmlFor="fname">First Name</label>
+              <input type="text" ref={firstName} id="fname" />
             </div>
-            <div className='form_username form_input'>
-              <label htmlFor='lname'>Last Name</label>
-              <input type='text' ref={lastName} id='lname' />
+            <div className="form_username form_input">
+              <label htmlFor="lname">Last Name</label>
+              <input type="text" ref={lastName} id="lname" />
             </div>
-            <div className='form_email form_input'>
-              <label htmlFor='email'>Email</label>
-              <input type='email' ref={email} id='email' />
+            <div className="form_email form_input">
+              <label htmlFor="email">Email</label>
+              <input type="email" ref={email} id="email" />
             </div>
-            <div className='form_password form_input'>
-              <label htmlFor='password'>Password</label>
-              <input type='password' ref={password} id='password' />
+            <div className="form_password form_input">
+              <label htmlFor="password">Password</label>
+              <input type="password" ref={password} id="password" />
             </div>
-            <div className='form_button'>
-              <button type='submit'>sign up</button>
+            <div className="form_button">
+              <button type="submit">sign up</button>
             </div>
           </form>
         </div>

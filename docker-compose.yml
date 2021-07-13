@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  movieappbackend:
+    build:
+      context: ./backend
+    image: iamgk/movieappbackend
+    container_name: movieappbackend
+    env_file: ./backend/movieapp.env
+    restart: unless-stopped
+    expose:
+      - 5000
+    depends_on:
+      - mongodb
+
+  movieappfrontend:
+    build:
+      context: ./frontend
+    image: iamgk/movieappfrontend
+    container_name: movieappfrontend
+    restart: unless-stopped
+    stdin_open: true
+    expose:
+      - 3000
+    depends_on:
+      - movieappbackend
+
+  mongodb:
+    image: mongo
+    container_name: movieappdb
+    env_file: ./db.env
+    volumes:
+      - movieappdata:/data/db
+    expose:
+      - 27017
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: moviewebapp
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - movieappfrontend
+
+volumes:
+  movieappdata:

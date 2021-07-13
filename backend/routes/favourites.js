@@ -17,8 +17,12 @@ router.get("/", verify, async (req, res, next) => {
 //Add user favourites to the database
 router.post("/", verify, async (req, res, next) => {
   //Check if favourite is already in the database or not
-  const favExists = await Favourites.find({ userRef: req.user.user, id: req.body.id });
-  if (favExists.length != 0) return res.status(400).json({ message: "Already added to favourites" });
+  const favExists = await Favourites.find({
+    userRef: req.user.user,
+    id: req.body.id,
+  });
+  if (favExists.length != 0)
+    return res.status(400).json({ message: "Already added to favourites" });
 
   //Add to Database
   const favMovie = new Favourites({
@@ -35,10 +39,13 @@ router.post("/", verify, async (req, res, next) => {
 
 //Delete user favourites
 router.delete("/", verify, async (req, res, next) => {
-  const isDeleted = await Favourites.deleteMany({ userRef: req.user.user, id: req.body.id });
-  if (isDeleted.n == 1) {
-    return res.status(204);
-  } else {
+  try {
+    const isDeleted = await Favourites.deleteMany({
+      userRef: req.user.user,
+      id: req.body.id,
+    });
+    return res.status(204).json({ movie: "Movie Removed" });
+  } catch (err) {
     return res.status(400).json({ message: "Bad Request" });
   }
 });

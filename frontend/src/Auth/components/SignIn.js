@@ -13,7 +13,7 @@ const SignIn = () => {
 
   const onLoginHandler = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/api/user/login", {
+    fetch("/api/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,27 +31,27 @@ const SignIn = () => {
   };
 
   return (
-    <div className='form-wrapper'>
-      <div className='form form-signin'>
+    <div className="form-wrapper">
+      <div className="form form-signin">
         <h2>Welcome Back!</h2>
-        <form action='' onSubmit={onLoginHandler}>
-          <div className='form_email form_input'>
-            <label htmlFor='email'>Email</label>
-            <input type='email' ref={email} id='email' />
+        <form action="" onSubmit={onLoginHandler}>
+          <div className="form_email form_input">
+            <label htmlFor="email">Email</label>
+            <input type="email" ref={email} id="email" />
           </div>
-          <div className='form_password form_input'>
-            <label htmlFor='password'>Password</label>
-            <input type='password' ref={password} id='password' />
+          <div className="form_password form_input">
+            <label htmlFor="password">Password</label>
+            <input type="password" ref={password} id="password" />
           </div>
-          <div className='form_button'>
-            <button type='submit'>login</button>
+          <div className="form_button">
+            <button type="submit">login</button>
           </div>
         </form>
 
-        <div className='form__signup'>
+        <div className="form__signup">
           <p>
             <span>Don't have an account?</span>
-            <Link to='/signup'>Sign Up</Link>
+            <Link to="/signup">Sign Up</Link>
           </p>
         </div>
       </div>

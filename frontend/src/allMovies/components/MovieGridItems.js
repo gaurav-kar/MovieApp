@@ -11,7 +11,7 @@ const MovieGridItems = (props) => {
   const onAddToFav = (favInfo) => {
     //Add it to the mongoDB using the user token in context
 
-    fetch("http://localhost:5000/api/user/favourites", {
+    fetch("/api/user/favourites", {
       method: "POST",
       headers: {
         Authorization: auth.userToken,
@@ -24,7 +24,7 @@ const MovieGridItems = (props) => {
   };
   return (
     <>
-      <h2 className='movie_grid__heading'>Movie Dashboard...</h2>
+      <h2 className="movie_grid__heading">Movie Dashboard...</h2>
       <MovieWrapper>
         {movies.map((item) => (
           <MovieGridContainer

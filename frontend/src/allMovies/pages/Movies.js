@@ -9,13 +9,13 @@ const Movies = () => {
   const [gridItems, setGridItems] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/upcomingMovies")
+    fetch("/api/upcomingMovies")
       .then((res) => res.json())
       .then((data) => setGridItems(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/trendingMovies")
+    fetch("/api/trendingMovies")
       .then((res) => res.json())
       .then((data) => setcarouselImages(data));
   }, []);
@@ -32,7 +32,7 @@ const Movies = () => {
   };
 
   const onEnteredInput = (input) => {
-    fetch(`http://localhost:5000/api/searchMovies/${input}`)
+    fetch(`/api/searchMovies/${input}`)
       .then((res) => res.json())
       .then((data) => setGridItems(data));
   };
@@ -42,7 +42,11 @@ const Movies = () => {
       <NavBarUI change={onEnteredInput} />
       <main>
         {carouselImages ? (
-          <Carousel data={carouselImages[counter]} next={nextCarouselItemHandler} prev={prevCarouselItemHandler} />
+          <Carousel
+            data={carouselImages[counter]}
+            next={nextCarouselItemHandler}
+            prev={prevCarouselItemHandler}
+          />
         ) : (
           "Loading!!!"
         )}
