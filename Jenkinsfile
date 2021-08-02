@@ -24,8 +24,8 @@ pipeline {
         stage("Create Docker Container") {
             steps {
                 echo "========Executing Docker compose========"
-                configFileProvider([configFile(fileId: 'moviesapp.env', targetLocation: 'backend/movieapp.env')]){ 
-                sh 'docker-compose up -d --build'
+                configFileProvider([configFile(fileId: 'moviesapp.env', targetLocation: 'backend/movieapp.env'), configFile(fileId: 'db.env', targetLocation: 'db.env') ]){ 
+                        sh 'docker-compose up -d --build'
                 }
                 echo "========Docker compose Up successfull========"
                 
