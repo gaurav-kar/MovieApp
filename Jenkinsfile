@@ -49,8 +49,8 @@ pipeline {
                 echo "========Push to Docker Registry========"
                 
                 sh 'echo $DOCKER_LOGIN_PSW | docker login -u $DOCKER_LOGIN_USR --password-stdin'
-                sh 'docker push iamgk/moviesappfrontend'
-                sh 'docker push iamgk/moviesappbackend'
+                sh 'docker push iamgk/movieappfrontend'
+                sh 'docker push iamgk/movieappbackend'
                 
                 echo "========Push to Docker Registry Completed========"
             }
